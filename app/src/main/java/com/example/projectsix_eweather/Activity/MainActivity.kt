@@ -1,5 +1,5 @@
 package com.example.projectsix_eweather.Activity
-//Главный экран
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val prefs = getSharedPreferences("weather_prefs", MODE_PRIVATE)
@@ -34,14 +33,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
-
-
-
-
-
-
-
         val lastCity = prefs.getString("last_city", null)
 
         if (lastCity != null) {
@@ -49,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val buttonCenter: Button = findViewById(R.id.buttonCenter)
-        val buttonLeft: Button = findViewById(R.id.buttonLeft)
+        //val buttonLeft: Button = findViewById(R.id.buttonLeft)
         val buttonRight: Button = findViewById(R.id.buttonRight)
 
 
@@ -73,13 +64,13 @@ class MainActivity : AppCompatActivity() {
 
             }}
 
-        buttonLeft.setOnClickListener {
+        /*buttonLeft.setOnClickListener {
             if (this !is MainActivity) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
 
             }
-        }
+        }*/
         buttonRight.setOnClickListener {
             if (this !is SettingsActivity) {
                 val intent = Intent(this, SettingsActivity::class.java)

@@ -1,4 +1,4 @@
-package com.example.projectsix_eweather.Api
+package com.example.projectsix_eweather.Api.City
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

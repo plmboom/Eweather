@@ -1,6 +1,6 @@
 package com.example.projectsix_eweather.Others
 
-//Принимает данные из поиска
+//принимает данные из поиска
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.widget.ImageView

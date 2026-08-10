@@ -1,5 +1,5 @@
 package com.example.projectsix_eweather.Others
-//История на экране поиска
+//история на экране поиска
 import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView

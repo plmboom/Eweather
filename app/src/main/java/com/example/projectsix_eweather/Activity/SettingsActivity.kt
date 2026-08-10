@@ -1,5 +1,5 @@
 package com.example.projectsix_eweather.Activity
-//Экран настроек
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -75,9 +75,5 @@ class SettingsActivity: AppCompatActivity() {
             }
         }
 
-
-
-
-
-
-        }}
+    }
+}

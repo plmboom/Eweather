@@ -1,4 +1,4 @@
-package com.example.projectsix_eweather.Api
+package com.example.projectsix_eweather.Api.Weather
 
 //Данные из API
 

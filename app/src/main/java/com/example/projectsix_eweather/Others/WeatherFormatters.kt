@@ -1,5 +1,5 @@
 package com.example.projectsix_eweather.Others
-//Функции перевода
+//функции перевода
 import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlin.math.roundToInt
