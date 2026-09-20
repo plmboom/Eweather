@@ -1,8 +1,7 @@
 package com.example.projectsix_eweather.Api.City
 
 import com.example.projectsix_eweather.UnsplashResponse
-import retrofit2.Call
-import retrofit2.Callback
+
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query

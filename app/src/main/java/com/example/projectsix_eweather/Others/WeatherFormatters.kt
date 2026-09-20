@@ -43,6 +43,7 @@ object WeatherFormatters {
             "Light drizzle" -> "Легкий дождь"
             "Partly Cloudy" -> "Переменная облачность"
             "Patchy light drizzle" -> "Легкий дождь"
+            "Light rain shower" -> "Небольшой дождь"
 
             else -> "Err"
         }
@@ -67,8 +68,6 @@ object WeatherFormatters {
             it.uppercase()
 
         }
-
-
     }
 
 
@@ -85,13 +84,5 @@ object WeatherFormatters {
         else{
             uv.roundToInt()}
     }
-
-
-
-
-
-
-
-
 
 }

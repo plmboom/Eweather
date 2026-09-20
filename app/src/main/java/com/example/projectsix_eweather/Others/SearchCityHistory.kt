@@ -1,10 +1,11 @@
 package com.example.projectsix_eweather.Others
 //история на экране поиска
 import android.content.Context
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.projectsix_eweather.Activity.SearchCityActivity
+import com.example.projectsix_eweather.Activity.SearchCityFragment
 import com.example.projectsix_eweather.R
 
 object SearchCityHistory {
@@ -48,13 +49,12 @@ object SearchCityHistory {
 
     }
 
-    fun loadIntoViews(activity: SearchCityActivity){
-        val prefs = activity.getSharedPreferences("weather_prefs", Context.MODE_PRIVATE)
+    fun loadIntoViews(fragment: SearchCityFragment){
+        val prefs = fragment.requireContext().getSharedPreferences("weather_prefs", Context.MODE_PRIVATE)
         for (i in 1..4){
             val city = prefs.getString("history_${i}_city", null)
             val temp = prefs.getFloat("history_${i}_temp", 0f)
             val condition = prefs.getString("history_${i}_condition", null)
-            //val code = prefs.getInt("history_${i}_code", 0)
             val time = prefs.getString("history_${i}_time", null)
             val photoUrl = prefs.getString("history_${i}_time", null)
 
@@ -64,39 +64,44 @@ object SearchCityHistory {
                 val conditionView: TextView
                 val timeView: TextView
                 val photoView: ImageView
+                val plateId: Int
 
                 when (i){
 
                     1-> {
-                        cityView = activity.findViewById(R.id.citySearch1)
-                        tempView = activity.findViewById(R.id.mainTemperatureSearch1)
-                        conditionView = activity.findViewById(R.id.conditionSearch1)
-                        timeView = activity.findViewById(R.id.timeSearch1)
-                        photoView = activity.findViewById(R.id.photoSearch1)
+                        cityView = fragment.requireView().findViewById(R.id.citySearch1)
+                        tempView = fragment.requireView().findViewById(R.id.mainTemperatureSearch1)
+                        conditionView = fragment.requireView().findViewById(R.id.conditionSearch1)
+                        timeView = fragment.requireView().findViewById(R.id.timeSearch1)
+                        photoView = fragment.requireView().findViewById(R.id.photoSearch1)
+                        plateId = R.id.PlateSearch1
                     }
 
                     2 -> {
-                        cityView = activity.findViewById(R.id.citySearch2)
-                        tempView = activity.findViewById(R.id.mainTemperatureSearch2)
-                        conditionView = activity.findViewById(R.id.conditionSearch2)
-                        timeView = activity.findViewById(R.id.timeSearch2)
-                        photoView = activity.findViewById(R.id.photoSearch2)
+                        cityView = fragment.requireView().findViewById(R.id.citySearch2)
+                        tempView = fragment.requireView().findViewById(R.id.mainTemperatureSearch2)
+                        conditionView = fragment.requireView().findViewById(R.id.conditionSearch2)
+                        timeView = fragment.requireView().findViewById(R.id.timeSearch2)
+                        photoView = fragment.requireView().findViewById(R.id.photoSearch2)
+                        plateId = R.id.PlateSearch2
                     }
 
                     3 -> {
-                        cityView = activity.findViewById(R.id.citySearch3)
-                        tempView = activity.findViewById(R.id.mainTemperatureSearch3)
-                        conditionView = activity.findViewById(R.id.conditionSearch3)
-                        timeView = activity.findViewById(R.id.timeSearch3)
-                        photoView = activity.findViewById(R.id.photoSearch3)
+                        cityView = fragment.requireView().findViewById(R.id.citySearch3)
+                        tempView = fragment.requireView().findViewById(R.id.mainTemperatureSearch3)
+                        conditionView = fragment.requireView().findViewById(R.id.conditionSearch3)
+                        timeView = fragment.requireView().findViewById(R.id.timeSearch3)
+                        photoView = fragment.requireView().findViewById(R.id.photoSearch3)
+                        plateId = R.id.PlateSearch3
                     }
 
                     else -> {
-                        cityView = activity.findViewById(R.id.citySearch4)
-                        tempView = activity.findViewById(R.id.mainTemperatureSearch4)
-                        conditionView = activity.findViewById(R.id.conditionSearch4)
-                        timeView = activity.findViewById(R.id.timeSearch4)
-                        photoView = activity.findViewById(R.id.photoSearch4)
+                        cityView = fragment.requireView().findViewById(R.id.citySearch4)
+                        tempView = fragment.requireView().findViewById(R.id.mainTemperatureSearch4)
+                        conditionView = fragment.requireView().findViewById(R.id.conditionSearch4)
+                        timeView = fragment.requireView().findViewById(R.id.timeSearch4)
+                        photoView = fragment.requireView().findViewById(R.id.photoSearch4)
+                        plateId = R.id.PlateSearch4
                     }
                 }
 
@@ -106,9 +111,14 @@ object SearchCityHistory {
                 timeView.text = "${WeatherFormatters.formatDateTimeMini(time!!)}"
 
                 if (photoUrl!=null){
-                    Glide.with(activity).load(photoUrl).into(photoView)
+                    Glide.with(fragment).load(photoUrl).into(photoView)
 
                 }
+
+
+                val plate: View = fragment.requireView().findViewById(plateId)
+                animPlate(plate, i)
+
 
 
 
@@ -119,7 +129,17 @@ object SearchCityHistory {
             }
 
         }
+    private fun animPlate(plate: View, index: Int){
+        plate.alpha = 0f
+        plate.translationY = 50f
+        plate.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(500)
+            .setStartDelay((index-1)*100L)
+            .start()
 
     }
+}
 
 

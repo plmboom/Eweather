@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="radio_color">#000000</color>
+    <color name="button_select_bg">#000000</color>
+    <color name="button_select_text">#FFFFFF</color>
 </resources>
