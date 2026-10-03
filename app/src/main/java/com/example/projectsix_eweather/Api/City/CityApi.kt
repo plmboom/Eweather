@@ -7,11 +7,10 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface CityApi {
-    @GET("v1/photos")
+    @GET("v1/search")
     suspend fun searchPhotos(
-        @Header("Authorization") query: String,
-        @Query("client_id") clientId: String,
+        @Header("Authorization") apiKey: String,
+        @Query("query") query: String,
         @Query("per_page") perPage: Int = 1
     ): UnsplashResponse
-
 }

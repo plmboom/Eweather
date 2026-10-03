@@ -19,5 +19,4 @@ class PagesAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
 
         }
     }
-
 }

@@ -10,13 +10,14 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.example.projectsix_eweather.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-
 
 
         val prefs = getSharedPreferences("weather_prefs", MODE_PRIVATE)
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             navigateTo(navController, R.id.settingsFragment)
         }
     }
-    }
+}
 
 
 

@@ -11,12 +11,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.projectsix_eweather.Others.WeatherFormatters
-import com.example.projectsix_eweather.Others.WeatherViewModel
+import com.example.projectsix_eweather.OthersH.WeatherViewModel
 import com.example.projectsix_eweather.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment: Fragment() {
 
-    private val viewModel: WeatherViewModel by activityViewModels()
+    private val viewModel: WeatherViewModel by activityViewModels ()
 
     private var firstLoad = true
 
@@ -76,11 +78,6 @@ class MainFragment: Fragment() {
         }
 
 
-
-
-
-
-
         if (firstLoad) {
             firstLoad = false
             val prefs =
@@ -90,7 +87,5 @@ class MainFragment: Fragment() {
                 viewModel.loadWeatherForCity(lastCity)
             }
         }
-
-
-        }
     }
+}

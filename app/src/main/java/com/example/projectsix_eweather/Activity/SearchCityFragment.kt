@@ -1,7 +1,5 @@
 package com.example.projectsix_eweather.Activity
 
-
-
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,16 +13,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.projectsix_eweather.Api.City.UnsplashRetrofitClient
 import com.example.projectsix_eweather.Others.SearchCityHistory
-import com.example.projectsix_eweather.Others.WeatherViewModel
+import com.example.projectsix_eweather.OthersH.WeatherViewModel
 import com.example.projectsix_eweather.R
 import kotlinx.coroutines.launch
 import kotlin.getValue
-import com.example.projectsix_eweather.BuildConfig
+import dagger.hilt.android.AndroidEntryPoint
 
 
-
+@AndroidEntryPoint
 class SearchCityFragment: Fragment() {
 
     private val viewModel: WeatherViewModel by activityViewModels()
@@ -66,6 +63,7 @@ class SearchCityFragment: Fragment() {
                     inScreenS = true
                     shouldSaveHistory = false
                     viewModel.loadWeatherForCity(city)
+                    viewModel.loadPhotoCity(city)
                 }
             }
         }
@@ -87,14 +85,7 @@ class SearchCityFragment: Fragment() {
 
             viewLifecycleOwner.lifecycleScope.launch {
                 if (shouldSaveHistory) {
-                    val photoUrl = try {
-                        UnsplashRetrofitClient.unsplashApi.searchPhotos(
-                            query = weather.location.name,
-                            clientId = BuildConfig.PEXELS_CLIENT_ID
-                        ).photos?.firstOrNull()?.src?.large
-                    } catch (e: Exception) {
-                        null
-                    }
+                    val photoUrl = viewModel.fetchCityPhotoUrl(weather.location.name)
 
                     SearchCityHistory.saveCity(
                         requireContext(),
@@ -111,13 +102,9 @@ class SearchCityFragment: Fragment() {
                         .edit()
                         .putString("last_city", weather.location.name)
                         .apply()
-
-
                 findNavController().popBackStack(R.id.mainFragment, false)
             }
         }
-
-
             buttonSelect.setOnClickListener {
                 val city = editTextCity.text.toString()
                 progressBar.visibility = View.VISIBLE
@@ -126,7 +113,6 @@ class SearchCityFragment: Fragment() {
                 shouldSaveHistory = true
                 viewModel.loadWeatherForCity(city)
             }
-
         }
     }
 
